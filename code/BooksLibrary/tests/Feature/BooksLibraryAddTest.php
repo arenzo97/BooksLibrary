@@ -3,14 +3,17 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\Book;
 use Tests\TestCase;
 
 class BooksLibraryAddTest extends TestCase
 {
+    use RefreshDatabase;
     /** @test */
-    public function add_book_to_library()
+    public function add_book_to_books_table()
     {
-        $response = $this->post('/library', [
+        $this->withoutExceptionHandling();
+        $response = $this->post('/books', [
             'title' => 'An Untitled Book',
             'author' => 'John Doe'
         ]);
