@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-/*
-Route::get('/', function () {
-    return view('welcome');
-});*/
-
-Route::post('/books','BooksController@set');
+Route::post('/books','App\Http\Controllers\BooksController@store');
