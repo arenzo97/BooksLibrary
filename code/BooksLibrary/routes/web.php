@@ -14,4 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/books','App\Http\Controllers\BooksController@store');
+Route::get('/', function () {
+    return view('Home');
+});
+
+Route::post('/books/add','BooksController@store');
+Route::resource('/books','BooksController');

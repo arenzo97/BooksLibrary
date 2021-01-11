@@ -15,7 +15,7 @@ class BooksLibraryAddTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $response = $this->post('/books', [
+        $response = $this->post('/books/add', [
             'title' => 'An Untitled Book',
             'author' => 'John Doe',
         ]);
