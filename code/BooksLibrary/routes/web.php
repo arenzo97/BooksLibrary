@@ -19,4 +19,5 @@ Route::get('/', function () {
 });
 
 Route::post('/books/add','BooksController@store');
+Route::patch('/books/update/{book}','BooksController@update');
 Route::resource('books','BooksController');

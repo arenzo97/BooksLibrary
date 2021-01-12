@@ -27,4 +27,16 @@ class BooksController extends Controller
         ]);
         return redirect('/books');
     }
+
+    public function update(Book $book)
+    {
+        $data = request()->validate([
+            'title'=>'required',
+            'author'=>'required',
+        ]);
+        
+        $book->update($data);
+        return redirect('/books');
+
+    }
 }
