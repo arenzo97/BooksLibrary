@@ -10,6 +10,12 @@ use Tests\TestCase;
 class BooksLibraryAddTest extends TestCase
 {
     use RefreshDatabase;
+    
+    /** @test */
+    public function books_table_is_empty()
+    {
+        $this->assertCount(0, Book::all());
+    }
     /** @test */
     public function add_book_to_books_table()
     {
