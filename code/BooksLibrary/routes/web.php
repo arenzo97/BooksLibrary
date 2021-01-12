@@ -19,4 +19,4 @@ Route::get('/', function () {
 });
 
 Route::post('/books/add','BooksController@store');
-Route::resource('/books','BooksController');
+Route::resource('books','BooksController');

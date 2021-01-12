@@ -17,10 +17,8 @@
                 <h1>Here's a list of books</h1>
                 <table>
                     <thead>
-                        <td>Name</td>
-                        <td>Description</td>
-                        <td>Count</td>
-                        <td>Price</td>
+                        <td>Title</td>
+                        <td>Author</td>
                     </thead>
                     <tbody>
                         @foreach ($allBooks as $book)
@@ -28,7 +26,6 @@
                                 
                                 <td>{{ $book->title }}</td>
                                 <td class="inner-table">{{ $book->author }}</td>
-                                
                             </tr>
                         @endforeach
                     </tbody>
