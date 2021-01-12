@@ -27,6 +27,28 @@ class BooksLibraryAddTest extends TestCase
     }
 
     /** @test */
+    public function validate_title()
+    {
+        $response = $this->post('/books/add', [
+            'title' => '',
+            'author' => 'John Doe',
+        ]);
+        
+        $response->assertSessionHasErrors('title');
+    }
+
+     /** @test */
+     public function validate_author()
+     {
+         $response = $this->post('/books/add', [
+             'title' => 'An Untitled Book',
+             'author' => '',
+         ]);
+         
+         $response->assertSessionHasErrors('author');
+     }
+
+    /** @test */
     public function a_book_can_be_updated()
     {
         $this->withoutExceptionHandling();

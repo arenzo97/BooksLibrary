@@ -27,7 +27,7 @@
                 <div class="content">
                     <div class="text-gray-500 m-b-md">Books Library</div>
                     <div class="links">
-                        <a href="/books/create">Create Book</a>
+                        <a href="{{ config('app.url')}}/books/create">Create Book</a>
                         <a href="{{ config('app.url')}}/books">View Books</a>
                     </div>
                 </div>
