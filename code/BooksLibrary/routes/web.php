@@ -20,4 +20,5 @@ Route::get('/', function () {
 
 Route::post('/books/add','BooksController@store');
 Route::patch('/books/update/{book}','BooksController@update');
+Route::delete('/books/delete/{book}','BooksController@destroy');
 Route::resource('books','BooksController');

@@ -34,6 +34,12 @@ class BooksController extends Controller
 
     }
 
+    public function destroy(Book $book)
+    {
+        $book->delete();
+        return redirect('/books');
+    }
+
     protected function validateRequest()
     {
         return request()->validate([
