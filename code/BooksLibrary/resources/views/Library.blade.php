@@ -24,8 +24,15 @@
                         @foreach ($allBooks as $book)
                             <tr>
                                 
-                                <td>{{ $book->title }}</td>
-                                <td class="inner-table">{{ $book->author }}</td>
+                                <td> <a href="{{ url('/books/update/' . $book->id) }}" >{{ $book->title }}</a></td>
+                                <td> <a href="{{ url('/books/update/' . $book->id) }}" >{{ $book->author }} </a></td>
+                                <td> 
+                                    <form action="{{ url('/books/delete', ['id' => $book->id]) }}" method="post">
+                                        <input class="btn btn-default" type="submit" value="Delete" />
+                                        <input type="hidden" name="_method" value="delete" />
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
