@@ -16,6 +16,7 @@ class BooksLibraryAddTest extends TestCase
     {
         $this->assertCount(0, Book::all());
     }
+
     /** @test */
     public function add_book_to_books_table()
     {
@@ -75,5 +76,24 @@ class BooksLibraryAddTest extends TestCase
         
         $this->assertEquals('New Title', Book::first()->title);
         $this->assertEquals('New Author', Book::first()->author);
+    }
+
+    /** @test */
+    public function delete_book_from_books_table()
+    {
+        $this->withoutExceptionHandling();
+
+        $response = $this->post('/books/add', [
+            'title' => 'An Untitled Book',
+            'author' => 'John Doe',
+        ]);
+
+        $book = Book::first();
+        $response = $this->delete('/books/delete/' . $book->id);
+        
+        $uri = '/books';
+        $response->assertRedirect($uri);
+
+        $this->assertCount(0, Book::all());
     }
 }
