@@ -21,23 +21,24 @@ class BooksController extends Controller
 
     public function store()
     {
-        $data = request()->validate([
-            'title'=>'required',
-            'author'=>'required',
-        ]);
-        Book::create($data);
+        Book::create($this->validateRequest());
         return redirect('/books');
     }
 
     public function update(Book $book)
     {
-        $data = request()->validate([
-            'title'=>'required',
-            'author'=>'required',
-        ]);
         
+        $data = $this->validateRequest();
         $book->update($data);
         return redirect('/books');
 
+    }
+
+    protected function validateRequest()
+    {
+        return request()->validate([
+            'title'=>'required',
+            'author'=>'required',
+        ]);
     }
 }
