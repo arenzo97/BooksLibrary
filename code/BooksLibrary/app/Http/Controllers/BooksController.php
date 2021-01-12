@@ -11,13 +11,19 @@ class BooksController extends Controller
     {
         $books = Book::all();
 
-        return view('Index', ['allBooks' => $books]);
+        return view('Library', ['allBooks' => $books]);
     }
 
     public function create()
     {
-        return view('create');
+        return view('CreateBook');
     }
+
+    public function edit(Book $book)
+    {
+        return view('EditBook', compact('book'));
+    }
+
 
     public function store()
     {
