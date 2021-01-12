@@ -14,11 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//homepage route
 Route::get('/', function () {
     return view('Home');
 });
 
-Route::post('/books/add','BooksController@store');
-Route::patch('/books/update/{book}','BooksController@update');
-Route::delete('/books/delete/{book}','BooksController@destroy');
+
+//routes for book features
 Route::resource('books','BooksController');
+
+//add book routes
+Route::post('/books/add','BooksController@store');
+
+//edit & update book routes
+Route::patch('/books/update/{book}','BooksController@update');
+Route::get('/books/update/{book}','BooksController@edit');
+
+//delete book routes
+Route::delete('/books/delete/{book}','BooksController@destroy');
