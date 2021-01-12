@@ -25,4 +25,27 @@ class BooksLibraryAddTest extends TestCase
 
         $this->assertCount(1, Book::all());
     }
+
+    /** @test */
+    public function a_book_can_be_updated()
+    {
+        $this->withoutExceptionHandling();
+
+        $response = $this->post('/books/add', [
+            'title' => 'An Untitled Book',
+            'author' => 'John Doe',
+        ]);
+
+        $book = Book::first();
+        $response = $this->patch('/books/update/' . $book->id,[
+            'title' => 'New Title',
+            'author' => 'New Author',
+        ]);
+        
+        $uri = '/books';
+        $response->assertRedirect($uri);
+        
+        $this->assertEquals('New Title', Book::first()->title);
+        $this->assertEquals('New Author', Book::first()->author);
+    }
 }
