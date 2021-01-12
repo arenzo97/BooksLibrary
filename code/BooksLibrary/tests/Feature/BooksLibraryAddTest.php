@@ -19,8 +19,9 @@ class BooksLibraryAddTest extends TestCase
             'title' => 'An Untitled Book',
             'author' => 'John Doe',
         ]);
-
-        $response->assertOk();
+        
+        $uri = '/books';
+        $response->assertRedirect($uri);
 
         $this->assertCount(1, Book::all());
     }

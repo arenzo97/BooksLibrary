@@ -25,6 +25,6 @@ class BooksController extends Controller
             'title'=>request('title'),
             'author'=>request('author'),
         ]);
-        return view('home');
+        return redirect('/books');
     }
 }
