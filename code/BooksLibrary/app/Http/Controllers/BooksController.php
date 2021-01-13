@@ -14,6 +14,15 @@ class BooksController extends Controller
         return view('Library', ['allBooks' => $books]);
     }
 
+    public function sortBookList($column, $sorttype)
+    {
+        $books = Book::orderBy($column,$sorttype)->get()->sortBy($column, SORT_NATURAL|SORT_FLAG_CASE);
+
+        return view('Library', ['allBooks' => $books]);
+    }
+
+
+
     public function create()
     {
         return view('CreateBook');

@@ -32,3 +32,6 @@ Route::get('/books/update/{book}','BooksController@edit');
 
 //delete book routes
 Route::delete('/books/delete/{book}','BooksController@destroy');
+
+//routes for book library
+Route::get('/books/{column}/{sorttype}','BooksController@sortBookList');

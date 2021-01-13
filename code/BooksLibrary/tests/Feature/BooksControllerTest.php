@@ -4,8 +4,10 @@ namespace Tests\Feature;
 
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Http\Controllers\BooksController;
 use App\Models\Book;
 use Tests\TestCase;
+
 
 class BooksControllerTest extends TestCase
 {
@@ -100,37 +102,47 @@ class BooksControllerTest extends TestCase
     {
         $this->assertCount(0, Book::all());
     }
-
-    /** @test */
+    
+    /*
     public function sort_book_list_by_title_asc()
     {
         $this->withoutExceptionHandling();
-        $correctOrder = ['A1B','B-1B','B2B'];
+        $correctOrder = ['A1B','B-1B','B 2B','B3A'];
 
-        $this->post('/books/add', [
+       $response = $this->post('/books/add', [
             'title' => 'A1B',
             'author' => '1',
         ]);
-        $this->post('/books/add', [
-            'title' => 'B2B',
-            'author' => '3',
+        $response = $this->post('/books/add', [
+            'title' => 'B3A',
+            'author' => '4',
         ]);
-        $this->post('/books/add', [
+        $response = $this->post('/books/add', [
             'title' => 'B-1B',
             'author' => '2',
         ]);
+        $response = $this->post('/books/add', [
+            'title' => 'B 2B',
+            'author' => '3',
+        ]);
+        
 
-        $testOrder = $this->get('/books/title/asc');
+        $testOrder = new BooksController();
+        $testOrder->sortTitleAsc();
+
 
         
         $uri = '/books';
         $response->assertRedirect($uri);
-
-        $this->assertSame($correctOrder,$testOrder);
+        
+        //test to see if adding 4 books in the library
+        //$this->assertCount(4, Book::all());    
+        
+        $this->assertEquals($correctOrder,$testOrder);
     }
 
     
-    /*public function sort_book_list_by_title_desc()
+    public function sort_book_list_by_title_desc()
     {
         $this->withoutExceptionHandling();
 
