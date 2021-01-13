@@ -16,12 +16,12 @@ class BooksController extends Controller
 
     public function sortBookList($column, $sorttype)
     {
+        //orders by column and sort type
+        //sortBy added to make it case insensitive
         $books = Book::orderBy($column,$sorttype)->get()->sortBy($column, SORT_NATURAL|SORT_FLAG_CASE);
 
         return view('Library', ['allBooks' => $books]);
     }
-
-
 
     public function create()
     {
