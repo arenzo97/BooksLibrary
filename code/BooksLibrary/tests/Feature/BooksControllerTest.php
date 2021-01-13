@@ -100,9 +100,32 @@ class BooksControllerTest extends TestCase
     /** @test */
     public function books_table_is_empty()
     {
+        $this->withoutExceptionHandling();
         $this->assertCount(0, Book::all());
     }
-    
+
+    /** @test */
+    public function search_for_book_title()
+    {
+        $this->withoutExceptionHandling();
+        $response = $this->post('/books/add', [
+            'title' => 'An Untitled Book',
+            'author' => 'John Doe',
+        ]);
+
+        $response = $this->post('/books/add', [
+            'title' => 'A Different Book',
+            'author' => 'Jane Mary',
+        ]);
+        
+        $query = '/books/search/title/search?query=Untitled';
+        $search = $this->get($query);
+        $search->assertRedirect($query);
+        
+        $this->assertEquals('An Untitled Book', Book::first()->title);
+       
+    }
+
     /*
     public function sort_book_list_by_title_asc()
     {
