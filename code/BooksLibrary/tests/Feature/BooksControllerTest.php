@@ -127,6 +127,7 @@ class BooksControllerTest extends TestCase
         
         
         $this->assertEquals('An Untitled Book', Book::first()->title);
+        $this->assertCount(1, Book::all());
        
     }
 
