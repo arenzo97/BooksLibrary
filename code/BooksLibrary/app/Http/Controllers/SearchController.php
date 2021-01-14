@@ -9,7 +9,9 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-        $books = Book::where('title', 'LIKE','%'.$query.'%')->get();
+        $books = Book::where('title', 'LIKE','%'.$query.'%')
+                ->orWhere('author', 'LIKE','%'.$query.'%')
+                ->get();
 
         return view('Library', ['books' => $books]);
     }
