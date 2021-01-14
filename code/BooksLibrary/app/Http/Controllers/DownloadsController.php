@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class DownloadsController extends Controller
 {
 
-    public function download($column)
+    public function downloadCSV($column)
     {
         $books = Book::all();
         $filename = date('Y-m-d-His')."-books-".$column.".csv";
