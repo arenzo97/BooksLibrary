@@ -38,6 +38,7 @@ Route::get('/books/search','SearchController@search');
 
 //routes for downloading
 Route::get('/books/download/all','BooksController@downloadAll');
+Route::get('/books/download/title','BooksController@downloadTitle');
 
 //routes for book features
 Route::resource('books','BooksController');

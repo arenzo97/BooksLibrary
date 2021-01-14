@@ -40,8 +40,29 @@ class BooksController extends Controller
         $headers = array(
             'Content-Type' => 'text/csv',
             );
-
+        
         return response()->download($filename,'books.csv',$headers);
+        
+    }
+    public function downloadTitle()
+    {
+
+        $books = Book::select('title')->get();
+        $filename = "books-titles-only.csv";
+        $handle = fopen($filename,'w+');
+        fputcsv($handle, array('title'));
+        
+        foreach($books as $book)
+        {
+            fputcsv($handle, array($book['title']));
+        }
+        fclose($handle);
+
+        $headers = array(
+            'Content-Type' => 'text/csv',
+            );
+        
+        return response()->download($filename,'books-titles-only.csv',$headers);
         
     }
 
