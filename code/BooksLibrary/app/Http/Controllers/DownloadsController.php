@@ -23,7 +23,6 @@ class DownloadsController extends Controller
             $get_column_headers = array($column);
         }
 
-
         fputcsv($handle, $get_column_headers);
 
         if($column=="all")
