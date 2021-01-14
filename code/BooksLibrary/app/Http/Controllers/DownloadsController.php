@@ -61,7 +61,8 @@ class DownloadsController extends Controller
             foreach($books as $book)
             {
                 $xml.="\t<book>\n";
-                fputcsv($handle,array($book['title'],$book['author']));
+                $xml.="\t\t<title>".$book['title']."<title/>\n";
+                $xml.="\t\t<author>".$book['author']."<author/>\n";
                 $xml.="\t</book>\n";
             }
         }
@@ -72,7 +73,7 @@ class DownloadsController extends Controller
             foreach($books as $book)
             {
                 $xml.="\t<book>\n";
-                $xml.="\t\t<".$column."/>".$book[$column]."<".$column."/>\n";
+                $xml.="\t\t<".$column.">".$book[$column]."<".$column."/>\n";
                 $xml.="\t</book>\n";
             }
             
