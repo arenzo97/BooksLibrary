@@ -105,7 +105,7 @@ class BooksControllerTest extends TestCase
     }
 
     /** @test */
-    public function download_books_list_csv()
+    public function download_all_books_list_csv()
     {
         $this->withoutExceptionHandling();
         $response = $this->post('/books/add', [
@@ -122,7 +122,7 @@ class BooksControllerTest extends TestCase
             'author' => 'Jane K. Mary',
         ]);
         
-        $query = '/books/download';
+        $query = '/books/download/all';
         $response = $this->get($query);
         $response->assertOk();
     }

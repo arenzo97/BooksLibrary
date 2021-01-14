@@ -23,6 +23,28 @@ class BooksController extends Controller
         return view('Library', ['books' => $books]);
     }
 
+    public function downloadAll()
+    {
+
+        $books = Book::all();
+        $filename = "books.csv";
+        $handle = fopen($filename,'w+');
+        fputcsv($handle, array('title', 'author'));
+
+        foreach($books as $book)
+        {
+            fputcsv($handle, array($book['title'],$book['author']));
+        }
+        fclose($handle);
+
+        $headers = array(
+            'Content-Type' => 'text/csv',
+            );
+
+        return response()->download($filename,'books.csv',$headers);
+        
+    }
+
     public function create()
     {
         return view('CreateBook');
@@ -54,14 +76,7 @@ class BooksController extends Controller
         $book->delete();
         return redirect('/books');
     }
-    public function search(Request $request)
-    {
-        $query = $request->input('query');
-        $books = Book::where('title', 'LIKE','%'.$query.'%')->get();
-
-        return view('Library', ['books' => $books]);
-    }
-
+ 
 
     protected function validateRequest()
     {

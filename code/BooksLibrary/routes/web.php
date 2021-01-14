@@ -33,8 +33,11 @@ Route::get('/books/update/{book}','BooksController@edit');
 Route::delete('/books/delete/{book}','BooksController@destroy');
 
 //routes for book library
-Route::get('/books/{column}/{sorttype}','BooksController@sortBookList');
+Route::get('/books/sort/{column}/{sorttype}','BooksController@sortBookList');
 Route::get('/books/search','SearchController@search');
+
+//routes for downloading
+Route::get('/books/download/all','BooksController@downloadAll');
 
 //routes for book features
 Route::resource('books','BooksController');
