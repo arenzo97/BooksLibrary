@@ -122,7 +122,7 @@ class BooksControllerTest extends TestCase
             'author' => 'Jane K. Mary',
         ]);
         
-        $query = '/books/download/all';
+        $query = '/books/download/csv/all';
         $response = $this->get($query);
         $response->assertOk();
     }
@@ -145,7 +145,7 @@ class BooksControllerTest extends TestCase
             'author' => 'Jane K. Mary',
         ]);
         
-        $query = '/books/download/title';
+        $query = '/books/download/csv/title';
         $response = $this->get($query);
         $response->assertOk();
     }
@@ -168,7 +168,7 @@ class BooksControllerTest extends TestCase
             'author' => 'Jane K. Mary',
         ]);
         
-        $query = '/books/download/author';
+        $query = '/books/download/csv/author';
         $response = $this->get($query);
         $response->assertOk();
     }

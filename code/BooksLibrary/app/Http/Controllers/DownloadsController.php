@@ -7,17 +7,39 @@ use Illuminate\Http\Request;
 class DownloadsController extends Controller
 {
 
-    public function downloadAll()
+    public function download($column)
     {
-
         $books = Book::all();
-        $filename = "books.csv";
+        $filename = date('Y-m-d-His')."-books-".$column.".csv";
         $handle = fopen($filename,'w+');
-        fputcsv($handle, array('title', 'author'));
 
-        foreach($books as $book)
+        if($column=="all")
         {
-            fputcsv($handle, array($book['title'],$book['author']));
+          $get_column_headers =  array('title', 'author');
+        }
+
+        else if($column=="title"||$column=="author")
+        {
+            $get_column_headers = array($column);
+        }
+
+
+        fputcsv($handle, $get_column_headers);
+
+        if($column=="all")
+        {
+            foreach($books as $book)
+            {
+                fputcsv($handle,array($book['title'],$book['author']));
+            }
+        }
+
+        else if($column=="title"||$column=="author")
+        {
+            foreach($books as $book)
+            {
+                fputcsv($handle, array($book[$column]));
+            }
         }
         fclose($handle);
 
@@ -25,50 +47,7 @@ class DownloadsController extends Controller
             'Content-Type' => 'text/csv',
             );
         
-        return response()->download($filename,'books.csv',$headers);
-        
-    }
-    public function downloadTitle()
-    {
-
-        $books = Book::select('title')->get();
-        $filename = "books-titles-only.csv";
-        $handle = fopen($filename,'w+');
-        fputcsv($handle, array('title'));
-        
-        foreach($books as $book)
-        {
-            fputcsv($handle, array($book['title']));
-        }
-        fclose($handle);
-
-        $headers = array(
-            'Content-Type' => 'text/csv',
-            );
-        
-        return response()->download($filename,'books-titles-only.csv',$headers);
-        
+        return response()->download($filename,$filename,$headers);
     }
 
-    public function downloadAuthor()
-    {
-
-        $books = Book::select('author')->get();
-        $filename = "books-authors-only.csv";
-        $handle = fopen($filename,'w+');
-        fputcsv($handle, array('author'));
-        
-        foreach($books as $book)
-        {
-            fputcsv($handle, array($book['author']));
-        }
-        fclose($handle);
-
-        $headers = array(
-            'Content-Type' => 'text/csv',
-            );
-        
-        return response()->download($filename,'books-authors-only.csv',$headers);
-        
-    }
 }

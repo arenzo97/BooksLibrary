@@ -37,9 +37,7 @@ Route::get('/books/sort/{column}/{sorttype}','BooksController@sortBookList');
 Route::get('/books/search','SearchController@search');
 
 //routes for downloading
-Route::get('/books/download/all','DownloadsController@downloadAll');
-Route::get('/books/download/title','DownloadsController@downloadTitle');
-Route::get('/books/download/author','DownloadsController@downloadAuthor');
+Route::get('/books/download/csv/{column}','DownloadsController@download');
 
 //routes for book features
 Route::resource('books','BooksController');
