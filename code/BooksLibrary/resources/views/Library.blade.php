@@ -21,7 +21,7 @@
                         <td>Author</td>
                     </thead>
                     <tbody>
-                        @foreach ($allBooks as $book)
+                        @foreach ($books as $book)
                             <tr>
                                 
                                 <td> <a href="{{ url('/books/update/' . $book->id) }}" >{{ $book->title }}</a></td>

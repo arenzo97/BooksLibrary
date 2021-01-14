@@ -11,7 +11,7 @@ class BooksController extends Controller
     {
         $books = Book::all();
 
-        return view('Library', ['allBooks' => $books]);
+        return view('Library', ['books' => $books]);
     }
 
     public function sortBookList($column, $sorttype)
@@ -20,7 +20,7 @@ class BooksController extends Controller
         //sortBy added to make it case insensitive
         $books = Book::orderBy($column,$sorttype)->get()->sortBy($column, SORT_NATURAL|SORT_FLAG_CASE);
 
-        return view('Library', ['allBooks' => $books]);
+        return view('Library', ['books' => $books]);
     }
 
     public function create()
@@ -57,10 +57,12 @@ class BooksController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-        $books = Book::where('title', 'LIKE','%'.$query.'%');
-        echo "Hello";
-        return view('Library', ['allBooks' => $books]);
+        $books = Book::where('title', 'LIKE','%'.$query.'%')->get();
+
+        return view('Library', ['books' => $books]);
     }
+
+
     protected function validateRequest()
     {
         return request()->validate([
