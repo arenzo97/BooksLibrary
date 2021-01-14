@@ -66,6 +66,27 @@ class BooksController extends Controller
         
     }
 
+    public function downloadAuthor()
+    {
+
+        $books = Book::select('author')->get();
+        $filename = "books-authors-only.csv";
+        $handle = fopen($filename,'w+');
+        fputcsv($handle, array('author'));
+        
+        foreach($books as $book)
+        {
+            fputcsv($handle, array($book['author']));
+        }
+        fclose($handle);
+
+        $headers = array(
+            'Content-Type' => 'text/csv',
+            );
+        
+        return response()->download($filename,'books-authors-only.csv',$headers);
+        
+    }
     public function create()
     {
         return view('CreateBook');
