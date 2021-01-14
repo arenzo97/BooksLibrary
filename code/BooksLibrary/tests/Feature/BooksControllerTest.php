@@ -127,4 +127,27 @@ class BooksControllerTest extends TestCase
         $response->assertOk();
     }
 
+    /** @test */
+    public function download_title_only_books_list_csv()
+    {
+        $this->withoutExceptionHandling();
+        $response = $this->post('/books/add', [
+            'title' => 'A Different Book',
+            'author' => 'Jane Mary',
+        ]);
+        $response = $this->post('/books/add', [
+            'title' => 'An Untitled Book',
+            'author' => 'John Doe',
+        ]);
+
+        $response = $this->post('/books/add', [
+            'title' => 'Not the Same Book',
+            'author' => 'Jane K. Mary',
+        ]);
+        
+        $query = '/books/download/title';
+        $response = $this->get($query);
+        $response->assertOk();
+    }
+
 }
