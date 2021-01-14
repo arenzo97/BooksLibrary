@@ -11,6 +11,7 @@ use Tests\TestCase;
 
 class DownloadsControllerTest extends TestCase
 {
+    use RefreshDatabase;
     /** @test */
     public function download_all_books_list_csv()
     {

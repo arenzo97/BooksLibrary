@@ -49,4 +49,44 @@ class DownloadsController extends Controller
         return response()->download($filename,$filename,$headers);
     }
 
+    public function downloadXML($column)
+    {
+        $books = Book::all();
+        $filename = date('Y-m-d-His')."-books-".$column.".xml";
+        $handle = fopen($filename,'w+');
+        $xml="<library>\n";
+
+        if($column=="all")
+        {
+            foreach($books as $book)
+            {
+                $xml.="\t<book>\n";
+                fputcsv($handle,array($book['title'],$book['author']));
+                $xml.="\t</book>\n";
+            }
+        }
+        
+        else if($column=="title"||$column=="author")
+        {
+            
+            foreach($books as $book)
+            {
+                $xml.="\t<book>\n";
+                $xml.="\t\t<".$column."/>".$book[$column]."<".$column."/>\n";
+                $xml.="\t</book>\n";
+            }
+            
+        }
+        
+        $xml.="</library>";
+        fwrite($handle,$xml);
+        fclose($handle);
+
+        $headers = array(
+            'Content-Type' => 'text/xml',
+            );
+        
+        return response()->download($filename,$filename,$headers);
+    }
+
 }

@@ -38,6 +38,7 @@ Route::get('/books/search','SearchController@search');
 
 //routes for downloading
 Route::get('/books/download/csv/{column}','DownloadsController@downloadCSV');
+Route::get('/books/download/xml/{column}','DownloadsController@downloadXML');
 
 //routes for book features
 Route::resource('books','BooksController');
