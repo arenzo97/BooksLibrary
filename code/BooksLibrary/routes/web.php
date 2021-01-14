@@ -34,7 +34,7 @@ Route::delete('/books/delete/{book}','BooksController@destroy');
 
 //routes for book library
 Route::get('/books/{column}/{sorttype}','BooksController@sortBookList');
-Route::get('/books/search','BooksController@search');
+Route::get('/books/search','SearchController@search');
 
 //routes for book features
 Route::resource('books','BooksController');
