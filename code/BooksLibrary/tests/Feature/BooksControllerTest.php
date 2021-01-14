@@ -122,7 +122,7 @@ class BooksControllerTest extends TestCase
             'author' => 'Jane K. Mary',
         ]);
         
-        $query = '/books/search/title/search?query=Untitled';
+        $query = '/books/search?query=Untitled';
         $search = $this->get($query);
         
         

@@ -6,11 +6,10 @@ use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {
-    public function search($column)
+    public function search(Request $request)
     {
-        //orders by column and sort type
-        //sortBy added to make it case insensitive
-        $books = Book::all();
+        $query = $request->input('query');
+        $books = Book::where('title', 'LIKE','%'.$query.'%');
         return view('Library', ['allBooks' => $books]);
     }
 }

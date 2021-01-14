@@ -54,7 +54,13 @@ class BooksController extends Controller
         $book->delete();
         return redirect('/books');
     }
-
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $books = Book::where('title', 'LIKE','%'.$query.'%');
+        echo "Hello";
+        return view('Library', ['allBooks' => $books]);
+    }
     protected function validateRequest()
     {
         return request()->validate([

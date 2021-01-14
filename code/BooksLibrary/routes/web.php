@@ -20,8 +20,7 @@ Route::get('/', function () {
 });
 
 
-//routes for book features
-Route::resource('books','BooksController');
+
 
 //add book routes
 Route::post('/books/add','BooksController@store');
@@ -35,4 +34,7 @@ Route::delete('/books/delete/{book}','BooksController@destroy');
 
 //routes for book library
 Route::get('/books/{column}/{sorttype}','BooksController@sortBookList');
-Route::get('/books/search/{category}/search',['uses'=>'SearchController@search','as'=>'search']);
+Route::get('/books/search','BooksController@search');
+
+//routes for book features
+Route::resource('books','BooksController');
