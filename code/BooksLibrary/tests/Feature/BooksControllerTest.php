@@ -123,11 +123,12 @@ class BooksControllerTest extends TestCase
         ]);
         
         $query = '/books/search?query=Untitled';
-        $search = $this->get($query);
+        $response = $this->get($query);
+    
+        $response->assertSeeText('An Untitled Book');
+        $response->assertDontSeeText('Not the Same Book', $escaped = true);
+        $response->assertDontSeeText('A Different Book', $escaped = true);
         
-        
-        $this->assertEquals('An Untitled Book', Book::first()->title);
-        $this->assertCount(1, Book::all());
        
     }
 
