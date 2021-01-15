@@ -109,7 +109,7 @@ How to deploy:
 
 * [Laravel 8](https://laravel.com/docs/8.x) - The web framework used
 * [Laravel Homestead](https://laravel.com/docs/8.x/homestead) - Pre-packaged Vagrant box for virtualisation
-* [Tailwind CSS](https://tailwindcss.com/docs/theme) - Used to generate RSS Feeds
+* [Tailwind CSS](https://tailwindcss.com/docs/theme) - Styling
 
 
 ## Authors
