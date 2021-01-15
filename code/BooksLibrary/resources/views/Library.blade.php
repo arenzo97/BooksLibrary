@@ -27,14 +27,14 @@
             </div>
 
             <!-- Description -->
-            <div class="mx-40 py-10 text-center">
+            <div class="mx-20 py-10 text-center">
                 <p class="text-lg">
                     Welcome! To sort the books, click on the column headers. To edit a book, simply click its 'title' or 'author'.
                 </p>
             </div>
 
             <!-- Libray Table -->
-            <div class="items-center justify-center mx-40">
+            <div class="items-center justify-center mx-20">
                 <table class="border-collapse w-full"> 
                     <thead>
                         <!-- Title and Author column headers sorts the view depending on which on is selected -->
