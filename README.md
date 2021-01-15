@@ -18,11 +18,20 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+You'll need
+* Vagrant
+* A Virtual Machine provider such as:
+  * VirtualBox 6.1.x
+  * VMWare
+  * Parallels
+  * Hyper-V
+  
+Install Vagrant Box
+```
+vagrant box add laravel/homestead
+```
 
-```
-Give examples
-```
+Configure your
 
 ### Installing
 
@@ -36,8 +45,7 @@ Install this repository
 git clone https://github.com/arenzo97/BooksLibrary.git
 ```
 
-And repeat
-
+* Generate database
 ```
 until finished
 ```
@@ -88,6 +96,8 @@ How to deploy:
 * Extract the downloaded ZIP file
 * Go to the directory `/code/BooksLibrary`
 * Copy and paste the `.env.example` into a new file called `.env`
+* Change the value `APP_ENV=prod` then close
+* Generate a new APP_KEY
 * Select all contents and re-compress these into a new ZIP
   * alternatively do `../laravel-default.zip -r * .[^.]* -x "vendor/*"`
 * Upload and deploy to an instance
@@ -101,14 +111,7 @@ How to deploy:
 
 
 ## Authors
-
-* **Luis Lorenzo Arenas** - *Initial work* - [Arenzo97](https://arenzo97.github.io/)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
+* **Luis Lorenzo Arenas** - *Author* - [Arenzo97](https://arenzo97.github.io/)
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
