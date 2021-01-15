@@ -1,62 +1,116 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Books Library
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Welcome to the 'Books Library' project, here you can add books to a table. What can you do?
+- Enter the 'title' and 'author' of the book
+- Edit book on the table
+- Delete a book from the table
+- Sort by title or author
+- Search for a book by title or author
+- Export and download:
+  - a CSV file with all columns from the book table
+  - a CSV file with either only the 'title' or 'author' column from the book table
+  - an XML file with all columns from the book table
+  - an XML file with either only the 'title' or 'author' column from the book table
 
-## About Laravel
+## Getting Started
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Prerequisites
+You'll need:
+* Composer
+* PHP
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+*(Optional)* To run it through Homestead:
+* Vagrant
+* A Virtual Machine provider such as:
+  * VirtualBox 6.1.x
+  * VMWare
+  * Parallels
+  * Hyper-V
 
-## Learning Laravel
+Install Vagrant Box
+```
+vagrant box add laravel/homestead
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Follow these [installation steps](https://laravel.com/docs/8.x/homestead#installation-and-setup) to configure Homestead.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Installation
 
-## Laravel Sponsors
+* Install this repository
+```
+git clone https://github.com/arenzo97/BooksLibrary.git
+```
+* Or download using ZIP
+* Create the database locally
+* Open the console and cd to `code/BooksLibrary`
+* Run `php artisan key:generate` to generate the APP_KEY for the .env file
+* Run `php artisan migrate`
+* Run `php artisan db:seed` to run seeders, if any
+* Run `php artisan serve`
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+You should now be able to access this project at localhost:8000
 
-### Premium Partners
+You can also run [this example](http://bookslibrary-env.eba-c2rhdpgy.eu-west-2.elasticbeanstalk.com).
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+## Running the tests
 
-## Contributing
+You can run all of the tests using the PHPUnit command. Using a terminal, you must be in the `~/code/BooksLibrary` directory and enter:
+```
+phpunit
+```
+Additionally, if you want to run particular tests, you add `--filter` then the name of the test. For example:
+```
+phpunit --filter add_book_to_books_table
+```
+### List of feature tests:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Below are the list of available tests you can run using PHPUnit:
 
-## Code of Conduct
+```
+books_table_is_empty
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+add_book_to_books_table //adds book to the table
+validate_title_has_value
+validate_title_has_more_than_three_characters
+validate_author_has_value
+validate_author_has_more_than_three_characters
 
-## Security Vulnerabilities
+a_book_can_be_updated
+delete_book_from_books_table
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+search_for_book_title
+search_for_book_author
 
-## License
+download_all_books_list_csv
+download_title_only_books_list_csv
+download_author_only_books_list_csv
+download_all_books_list_xml
+download_title_only_books_list_xml
+download_author_only_books_list_xml
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Deployment
+How to deploy:
+
+* Download the repository as a ZIP file
+* Extract the downloaded ZIP file
+* Go to the directory `/code/BooksLibrary`
+* Copy and paste the `.env.example` into a new file called `.env`
+* Change the value `APP_ENV=prod` then close
+* Generate a new APP_KEY
+* Select all contents and re-compress these into a new ZIP
+  * alternatively do `../laravel-default.zip -r * .[^.]* -x "vendor/*"`
+* Upload and deploy to an instance
+* Ensure that the root folder points to "/public"
+
+## Built With
+
+* [Laravel 8](https://laravel.com/docs/8.x) - The web framework used
+* [Laravel Homestead](https://laravel.com/docs/8.x/homestead) - Pre-packaged Vagrant box for virtualisation
+* [Tailwind CSS](https://tailwindcss.com/docs/theme) - Used to generate RSS Feeds
+
+
+## Authors
+* **Luis Lorenzo Arenas** - *Author* - [Arenzo97](https://arenzo97.github.io/)
