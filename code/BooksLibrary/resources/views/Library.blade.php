@@ -5,11 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Books Library</title>
-        <style>
-            body {
-                font-family: 'Nunito';
-            }
-        </style>
+        <link rel = "stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -37,6 +33,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                
             </div>
         </div>
     </body>

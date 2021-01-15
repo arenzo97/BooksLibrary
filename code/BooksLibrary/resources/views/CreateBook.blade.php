@@ -5,30 +5,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Create Book</title>
-        <style>
-            body {
-                font-family: 'Nunito';
-            }
-        </style>
+        <link rel = "stylesheet" href="{{ asset('css/app.css') }}">
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            <div class="content">
-                <form method="POST" action="{{ config('app.url')}}/books">
-                    @csrf
-                    <h1> Enter Details to add a book</h1>
+        <div class="relative flex items-top justify-center min-h-screen bg-gray-200 sm:items-center sm:pt-0">
+            <form method="POST" action="{{ config('app.url')}}/books">
+                @csrf
+                <h1> Enter Details to add a book</h1>
 
-                    <div class="form-input">
-                        <label>Title</label> <input type="text" name="title">
-                    </div>
+                <div class="pt-4">
+                    <input type="text" name="title" placeholder="Title" class="rounded px-4 py-2">
+                </div>
 
-                    <div class="form-input">
-                        <label>Author</label> <input type="text" name="author">
-                    </div>
+                <div class="pt-4">
+                    <input type="text" name="author" placeholder="Author" class="rounded px-4 py-2">
+                </div>
+                <div class="pt-4">
+                    <button class="bg-blue-400 text-white rounded py-2 px-4"type="submit">Submit</button>
+                </div>
+            </form>
 
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
         </div>
     </body>
 </html>
