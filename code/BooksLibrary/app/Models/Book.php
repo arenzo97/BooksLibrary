@@ -10,11 +10,6 @@ class Book extends Model
 {
     use HasFactory;
 
+    // as fields are explicit, uses $guarded instead of $fillable
     protected $guarded = [];
-
-    public function path()
-    {
-        return '/books/' / $this->id;
-    }
-    
 }
