@@ -25,7 +25,8 @@ You'll need
   * VMWare
   * Parallels
   * Hyper-V
-  
+* Composer
+* PHP
 Install Vagrant Box
 ```
 vagrant box add laravel/homestead
@@ -33,24 +34,23 @@ vagrant box add laravel/homestead
 
 Follow these [installation steps](https://laravel.com/docs/8.x/homestead#installation-and-setup) to configure Homestead.
 
-### Installing
+### Installation
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-Install this repository
-
+* Install this repository
 ```
 git clone https://github.com/arenzo97/BooksLibrary.git
 ```
+* Or download using ZIP
+* Create the database locally
+* Open the console and go to the project directory
+* Run `php artisan key:generate` to generate the APP_KEY for the .env file
+* Run `php artisan migrate`
+* Run `php artisan db:seed` to run seeders, if any
+* Run `php artisan serve`
 
-* Generate database
-```
-until finished
-```
+You should now be able to access this project at localhost:8000
 
-End with an example of getting some data out of the system or using it for a little demo
+You can also run [this example](http://bookslibrary-env.eba-c2rhdpgy.eu-west-2.elasticbeanstalk.com).
 
 ## Running the tests
 
