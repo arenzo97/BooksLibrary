@@ -8,17 +8,23 @@
 
         <link rel = "stylesheet" href="{{ asset('css/app.css') }}">
     </head>
-    <body class="bg-gray-300">
-        <div class="relative flex items-top justify-center min-h-screen bg-gray-500 sm:items-center sm:pt-0">
-            <div class="flex-center position-ref full-height">
-                <div class="content">
-                    <div><h1 class=>Books Library</h1></div>
-                    <div class="links">
-                        <a href="{{ config('app.url')}}/books/create">Create Book</a>
-                        <a href="{{ config('app.url')}}/books">View Books</a>
+    <body >
+        <div class="w-full h-screen">
+            <div class="w-full h-screen bg-gradient-to-r from-green-400 to-blue-500 flex justify-center items-center">
+                <div class="mx-4 text-center text-white">
+                    <h1 class="font-bold text-6xl mb-4">Books Library</h1>
+                    <h2 class="font-bold text-3xl mb-12">by Luis Lorenzo Arenas</h2>
+                    <div>
+                        <a href="{{ config('app.url')}}/books/create" class="font-bold rounded-md text-gray-600 text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-200 mr-2">
+                            Create a book
+                        </a>
+                        <a href="{{ config('app.url')}}/books" class="font-bold rounded-md text-gray-600 text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-200 ml-2">
+                            View Library
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </body>
 </html>
+

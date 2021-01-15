@@ -9,16 +9,19 @@
     </head>
     <body>
         <div class="relative flex items-top justify-center min-h-screen bg-gray-200 sm:items-center sm:pt-0">
-            <form method="POST" action="{{ config('app.url')}}/books">
+            <form method="POST" action="">
                 @csrf
-                <h1> Enter Details to add a book</h1>
+                @method('PATCH')
+                <h1> Enter Details to edit this book</h1>
 
                 <div class="pt-4">
-                    <input type="text" name="title" placeholder="Title" class="rounded px-4 py-2">
+                    <input type="text" name="title" placeholder="Title" value="{{ $book->title }}" class="rounded px-4 py-2">
+                    @error('title')<p class="text-red-600">{{ $message }}</p>@enderror
                 </div>
 
                 <div class="pt-4">
-                    <input type="text" name="author" placeholder="Author" class="rounded px-4 py-2">
+                    <input type="text" name="author" placeholder="Author" value="{{ $book->author }}"  class="rounded px-4 py-2">
+                    @error('author')<p class="text-red-600">{{ $message }}</p>@enderror
                 </div>
                 <div class="pt-4">
                     <button class="bg-blue-400 text-white rounded py-2 px-4"type="submit">Submit</button>

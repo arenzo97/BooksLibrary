@@ -14,11 +14,11 @@ class BooksController extends Controller
         return view('Library', ['books' => $books]);
     }
 
-    public function sortBookList($column, $sorttype)
+    public function sortBookList($column)
     {
         //orders by column and sort type
         //sortBy added to make it case insensitive
-        $books = Book::orderBy($column,$sorttype)->get()->sortBy($column, SORT_NATURAL|SORT_FLAG_CASE);
+        $books = Book::orderBy($column,'asc')->get()->sortBy($column, SORT_NATURAL|SORT_FLAG_CASE);
 
         return view('Library', ['books' => $books]);
     }
