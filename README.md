@@ -30,8 +30,10 @@ A step by step series of examples that tell you how to get a development env run
 
 Say what the step will be
 
+Install this repository
+
 ```
-Give the example
+git clone https://github.com/arenzo97/BooksLibrary.git
 ```
 
 And repeat
@@ -81,7 +83,15 @@ download_author_only_books_list_xml
 
 ## Deployment
 How to deploy:
-*
+
+* Download the repository as a ZIP file
+* Extract the downloaded ZIP file
+* Go to the directory `/code/BooksLibrary`
+* Copy and paste the `.env.example` into a new file called `.env`
+* Select all contents and re-compress these into a new ZIP
+  * alternatively do `../laravel-default.zip -r * .[^.]* -x "vendor/*"`
+* Upload and deploy to an instance
+* Ensure that the root folder points to "/public"
 
 ## Built With
 
