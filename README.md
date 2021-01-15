@@ -31,7 +31,7 @@ Install Vagrant Box
 vagrant box add laravel/homestead
 ```
 
-Configure your
+Follow these [installation steps](https://laravel.com/docs/8.x/homestead#installation-and-setup) to configure Homestead.
 
 ### Installing
 
