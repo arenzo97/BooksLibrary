@@ -12,10 +12,15 @@ use Tests\TestCase;
 class DownloadsControllerTest extends TestCase
 {
     use RefreshDatabase;
+
+    // CSV download response tests
+    // response is URL for getting ALL columns
     /** @test */
     public function download_all_books_list_csv()
     {
         $this->withoutExceptionHandling();
+
+        //adds books
         $response = $this->post('/books/add', [
             'title' => 'A Different Book',
             'author' => 'Jane Mary',
@@ -32,9 +37,12 @@ class DownloadsControllerTest extends TestCase
         
         $query = '/books/download/csv/all';
         $response = $this->get($query);
+
+        // passes if OK returned
         $response->assertOk();
     }
 
+    // response is URL for getting only the title column
     /** @test */
     public function download_title_only_books_list_csv()
     {
@@ -55,9 +63,12 @@ class DownloadsControllerTest extends TestCase
         
         $query = '/books/download/csv/title';
         $response = $this->get($query);
+
+        // passes if OK returned
         $response->assertOk();
     }
 
+    // response is URL for getting only the author column
     /** @test */
     public function download_author_only_books_list_csv()
     {
@@ -78,9 +89,13 @@ class DownloadsControllerTest extends TestCase
         
         $query = '/books/download/csv/author';
         $response = $this->get($query);
+
+        // passes if OK returned
         $response->assertOk();
     }
 
+    // XML download response tests
+    // response is URL for getting ALL columns
     /** @test */
     public function download_all_books_list_xml()
     {
@@ -101,9 +116,12 @@ class DownloadsControllerTest extends TestCase
         
         $query = '/books/download/xml/all';
         $response = $this->get($query);
+
+        // passes if OK returned
         $response->assertOk();
     }
 
+    // response is URL for getting only the title column
     /** @test */
     public function download_title_only_books_list_xml()
     {
@@ -124,9 +142,12 @@ class DownloadsControllerTest extends TestCase
         
         $query = '/books/download/xml/title';
         $response = $this->get($query);
+
+        // passes if OK returned
         $response->assertOk();
     }
 
+    // response is URL for getting only the author column
     /** @test */
     public function download_author_only_books_list_xml()
     {
@@ -147,6 +168,8 @@ class DownloadsControllerTest extends TestCase
         
         $query = '/books/download/xml/author';
         $response = $this->get($query);
+
+        // passes if OK returned
         $response->assertOk();
     }
 }

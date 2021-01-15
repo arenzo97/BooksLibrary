@@ -16,6 +16,7 @@ class SearchControllerTest extends TestCase
     /** @test */
     public function search_for_book_title()
     {
+        // adds books
         $this->withoutExceptionHandling();
         $response = $this->post('/books/add', [
             'title' => 'A Different Book',
@@ -31,9 +32,11 @@ class SearchControllerTest extends TestCase
             'author' => 'Jane K. Mary',
         ]);
         
+        // gets URL with "Untitled" in the query
         $query = '/books/search?query=Untitled';
         $response = $this->get($query);
-    
+        
+        // passes if only 'An Untitled Book' is found on view
         $response->assertSeeText('An Untitled Book');
         $response->assertDontSeeText('Not the Same Book', $escaped = true);
         $response->assertDontSeeText('A Different Book', $escaped = true);
@@ -44,6 +47,7 @@ class SearchControllerTest extends TestCase
      /** @test */
      public function search_for_book_author()
      {
+         // adds books
          $this->withoutExceptionHandling();
          $response = $this->post('/books/add', [
              'title' => 'A Different Book',
@@ -59,9 +63,11 @@ class SearchControllerTest extends TestCase
              'author' => 'Jane K. Mary',
          ]);
          
+         // gets URL with "John" in the query
          $query = '/books/search?query=John';
          $response = $this->get($query);
      
+         // passes if only 'An Untitled Book' is found on view
          $response->assertSeeText('An Untitled Book');
          $response->assertDontSeeText('Not the Same Book', $escaped = true);
          $response->assertDontSeeText('A Different Book', $escaped = true);

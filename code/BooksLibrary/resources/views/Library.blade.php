@@ -9,11 +9,11 @@
     </head>
     <body>
     <div class="w-full h-screen">
+        <!-- Search bar -->
         <div class="pt-20 py-10 text-center">
             <form action="/books/search" method="GET" role="search">
             @error('query')<p class="text-red-600">{{ $message }}</p>@enderror
                 <div>
-                     
                     <input class="border-2 border-gray-300 bg-white h-10 px-5 w-1/2 rounded-lg text-sm focus:outline-none" type="text" class="form-control" name="query" id="query"
                         placeholder="Search for title or author"> 
                     <span class="input-group-btn">
@@ -25,14 +25,19 @@
                 </div>
              </form>
             </div>
+
+            <!-- Description -->
             <div class="mx-40 py-10 text-center">
                 <p class="text-lg">
-                    Welcome! To sort the books, click on either the Title or Author headers. To edit a book, simply click its title or author.
+                    Welcome! To sort the books, click on the column headers. To edit a book, simply click its 'title' or 'author'.
                 </p>
             </div>
+
+            <!-- Libray Table -->
             <div class="items-center justify-center mx-40">
                 <table class="border-collapse w-full"> 
                     <thead>
+                        <!-- Title and Author column headers sorts the view depending on which on is selected -->
                         <th class="p-3 font-bold uppercase bg-blue-200 text-gray-600 border border-gray-300 hidden lg:table-cell"><a href="{{ url('/books/sort/title') }}">Title</a></th>
                         <th class="p-3 font-bold uppercase bg-blue-200 text-gray-600 border border-gray-300 hidden lg:table-cell"><a href="{{ url('/books/sort/author') }}">Author</a></th>
                         <th class="p-3 font-bold uppercase bg-blue-200 text-gray-600 border border-gray-300 hidden lg:table-cell">Action</th>
@@ -41,17 +46,24 @@
                         @foreach ($books as $book)
                         <tr class="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0">
                             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
+                                <!-- Header when in mobile/small screen view -->
                                 <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Title</span>
+                                
+                                <!-- Link to edit specific book, launches Edit view -->
                                 <a href="{{ url('/books/update/' . $book->id) }}" >{{ $book->title }}</a>
                             </td>
                             
                             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                             <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Author</span>
+                                
+                                <!-- Link to edit specific book, launches Edit view -->
                                 <a href="{{ url('/books/update/' . $book->id) }}" >{{ $book->author }} </a>
                             </td>
                             
                             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                 <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Actions</span> 
+
+                                <!-- Delete book button -->
                                 <form action="{{ url('/books/delete', ['id' => $book->id]) }}" method="post">
                                     <input  class="bg-red-500 hover:bg-red-700 text-white rounded py-2 px-4" type="submit" value="Delete" />
                                     <input type="hidden" name="_method" value="delete" />
@@ -60,6 +72,8 @@
                             </td>
                         </tr>
                     @endforeach
+
+                        <!-- Downloads drop down -->
                         <tr>
                             <td class="w-full lg:w-auto p-3 text-center block lg:table-cell relative lg:static">
                                 <div>
@@ -79,7 +93,10 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="w-full lg:w-auto p-3 text-center block lg:table-cell relative lg:static"></td>
+                            <td class="w-full lg:w-auto p-3 text-center block lg:table-cell relative lg:static">
+                            </td>
+
+                            <!-- Create a book button -->
                             <td class="w-full lg:w-auto p-3 text-center block lg:table-cell relative lg:static">
                             <button class="bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded inline-flex items-center">
                                 <a href="{{ config('app.url')}}/books/create">
