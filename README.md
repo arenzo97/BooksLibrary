@@ -17,16 +17,18 @@ Welcome to the 'Books Library' project, here you can add books to a table. What 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
+You'll need:
+* Composer
+* PHP
 
-You'll need
+*(Optional)* To run it through Homestead:
 * Vagrant
 * A Virtual Machine provider such as:
   * VirtualBox 6.1.x
   * VMWare
   * Parallels
   * Hyper-V
-* Composer
-* PHP
+
 Install Vagrant Box
 ```
 vagrant box add laravel/homestead
@@ -42,7 +44,7 @@ git clone https://github.com/arenzo97/BooksLibrary.git
 ```
 * Or download using ZIP
 * Create the database locally
-* Open the console and go to the project directory
+* Open the console and cd to `code/BooksLibrary`
 * Run `php artisan key:generate` to generate the APP_KEY for the .env file
 * Run `php artisan migrate`
 * Run `php artisan db:seed` to run seeders, if any
