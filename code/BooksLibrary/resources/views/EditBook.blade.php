@@ -23,7 +23,7 @@
                     <input type="text" name="author" placeholder="Author" value="{{ $book->author }}"  class="rounded px-4 py-2">
                     @error('author')<p class="text-red-600">{{ $message }}</p>@enderror
                 </div>
-                <div class="pt-4">
+                <div class="flex pt-4">
                     <button class="bg-blue-400 text-white rounded py-2 px-4"type="submit">Submit</button>
                 </div>
             </form>

@@ -31,7 +31,7 @@ class BooksControllerTest extends TestCase
     }
 
     /** @test */
-    public function validate_title()
+    public function validate_title_has_value()
     {
         $response = $this->post('/books/add', [
             'title' => '',
@@ -39,18 +39,38 @@ class BooksControllerTest extends TestCase
         ]);
         
         $response->assertSessionHasErrors('title');
+    } /** @test */
+    public function validate_title_has_more_than_three_characters()
+    {
+        $response = $this->post('/books/add', [
+            'title' => 'Aa',
+            'author' => 'John Doe',
+        ]);
+        
+        $response->assertSessionHasErrors('title');
     }
 
-     /** @test */
-     public function validate_author()
-     {
-         $response = $this->post('/books/add', [
-             'title' => 'An Untitled Book',
-             'author' => '',
-         ]);
+    /** @test */
+    public function validate_author_has_value()
+    {
+        $response = $this->post('/books/add', [
+            'title' => 'An Untitled Book',
+            'author' => '',
+        ]);
          
          $response->assertSessionHasErrors('author');
-     }
+    }
+
+    /** @test */
+    public function validate_author_has_more_than_three_characters()
+    {
+        $response = $this->post('/books/add', [
+            'title' => 'An Untitled Book',
+            'author' => 'Aa',
+        ]);
+        
+        $response->assertSessionHasErrors('author');
+    }
 
     //Update/edit existing book tests
     /** @test */

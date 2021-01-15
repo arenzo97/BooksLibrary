@@ -9,19 +9,28 @@
     </head>
     <body>
     <div class="w-full h-screen">
-        <div class="m-4 text-center">
+        <div class="pt-20 py-10 text-center">
             <form action="/books/search" method="GET" role="search">
-                
-                <div class="">
+            @error('query')<p class="text-red-600">{{ $message }}</p>@enderror
+                <div>
+                     
                     <input class="border-2 border-gray-300 bg-white h-10 px-5 w-1/2 rounded-lg text-sm focus:outline-none" type="text" class="form-control" name="query" id="query"
-                        placeholder="Search for title or author"> <span class="input-group-btn">
-                        <button class="bg-blue-400 h-10 text-white rounded-lg text-sm py-2 px-4"type="search">search</button>
+                        placeholder="Search for title or author"> 
+                    <span class="input-group-btn">
+                        <button class="bg-blue-400 h-10 text-white rounded-lg text-sm py-2 px-4"type="search">
+                        search
+                    </button>
+                        
                     </span>
                 </div>
              </form>
             </div>
-            <div class="">
-            
+            <div class="mx-40 py-10 text-center">
+                <p class="text-lg">
+                    Welcome! To sort the books, click on either the Title or Author headers. To edit a book, simply click its title or author.
+                </p>
+            </div>
+            <div class="items-center justify-center mx-40">
                 <table class="border-collapse w-full"> 
                     <thead>
                         <th class="p-3 font-bold uppercase bg-blue-200 text-gray-600 border border-gray-300 hidden lg:table-cell"><a href="{{ url('/books/sort/title') }}">Title</a></th>
@@ -44,7 +53,7 @@
                             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static">
                                 <span class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Actions</span> 
                                 <form action="{{ url('/books/delete', ['id' => $book->id]) }}" method="post">
-                                    <input  class="bg-red-600 text-white rounded py-2 px-4" type="submit" value="Delete" />
+                                    <input  class="bg-red-500 hover:bg-red-700 text-white rounded py-2 px-4" type="submit" value="Delete" />
                                     <input type="hidden" name="_method" value="delete" />
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 </form>
@@ -52,10 +61,10 @@
                         </tr>
                     @endforeach
                         <tr>
-                            <td class="w-full lg:w-auto p-3 text-gray-800 text-center block lg:table-cell relative lg:static">
+                            <td class="w-full lg:w-auto p-3 text-center block lg:table-cell relative lg:static">
                                 <div>
                                     <div class="dropdown inline-block">
-                                        <button class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
+                                        <button class="bg-gray-300 hover:bg-gray-400 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center">
                                         <span class="mr-1">Download</span>
                                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
                                         </button>
@@ -70,8 +79,14 @@
                                     </div>
                                 </div>
                             </td>
-                            <td></td>
-                            <td></td>
+                            <td class="w-full lg:w-auto p-3 text-center block lg:table-cell relative lg:static"></td>
+                            <td class="w-full lg:w-auto p-3 text-center block lg:table-cell relative lg:static">
+                            <button class="bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded inline-flex items-center">
+                                <a href="{{ config('app.url')}}/books/create">
+                                    Create a book
+                                </a>
+                            </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

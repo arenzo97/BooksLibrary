@@ -60,8 +60,8 @@ class BooksController extends Controller
     protected function validateRequest()
     {
         return request()->validate([
-            'title'=>'required',
-            'author'=>'required',
+            'title'=>'required|min:3',
+            'author'=>'required|min:3',
         ]);
     }
 }
